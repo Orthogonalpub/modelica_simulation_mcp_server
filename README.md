@@ -52,7 +52,7 @@ Add to your cursor/Claude settings:
 <summary>Using uvx</summary>
 
 Example:  
-set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation
+set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation and ensure backend env is ready
 ```json
   "mcpServers": {
       "modelica-mcp-server": {

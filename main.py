@@ -17,13 +17,16 @@ from mcp.server.fastmcp import FastMCP
 import matplotlib.pyplot as plt
 
 
-ORTHOGONAL_HOST="192.168.116.130"
+# ORTHOGONAL_HOST="192.168.116.130"
+ORTHOGONAL_HOST="paas.orthogonal.com"
 ORTHOGONAL_WS_URL=f"ws://{ORTHOGONAL_HOST}/ws/commontask/0/" 
 ORTHOGONAL_HTTP_URL=f"http://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
 OPENWEATHER_API_BASE = "https://api.openweathermap.org/data/2.5"
 OPENWEATHER_API_KEY = "eaea37a2a20c679c30060fdf0058307b"
 USER_AGENT = "orthogonal-app/1.0"
-USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
+# USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
+USER_ORTH_TOKEN=""
+
 SIMULATION_CMD="o_mcp_simulate"
 
 modelica_source_code=""
