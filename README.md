@@ -39,6 +39,8 @@ use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_s
 ```uv add mcp[cli] httpx websocket-client pandas --active```
 
 
+## Get Orthogonal token ()
+
 
 ## Configuration
 
@@ -49,7 +51,8 @@ Add to your cursor/Claude settings:
 <details>
 <summary>Using uvx</summary>
 
-Example
+Example:  
+set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation
 ```json
   "mcpServers": {
       "modelica-mcp-server": {
