@@ -18,14 +18,18 @@ import matplotlib.pyplot as plt
 
 
 # ORTHOGONAL_HOST="192.168.116.130"
-ORTHOGONAL_HOST="paas.orthogonal.com"
-ORTHOGONAL_WS_URL=f"ws://{ORTHOGONAL_HOST}/ws/commontask/0/" 
-ORTHOGONAL_HTTP_URL=f"http://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
-OPENWEATHER_API_BASE = "https://api.openweathermap.org/data/2.5"
-OPENWEATHER_API_KEY = "eaea37a2a20c679c30060fdf0058307b"
-USER_AGENT = "orthogonal-app/1.0"
 # USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
-USER_ORTH_TOKEN=""
+# ORTHOGONAL_WS_URL=f"ws://{ORTHOGONAL_HOST}/ws/commontask/0/" 
+# ORTHOGONAL_HTTP_URL=f"http://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
+
+ORTHOGONAL_HOST="paas.orthogonal.cc"
+USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MTUyNTgyLCJpYXQiOjE3NDQ1NDc3ODIsImp0aSI6IjYwNTM0NzBkNjQxNTQzZjhhYjg2NTE3ZWYzNzhkNTVkIiwidXNlcl9pZCI6OH0.sFUa77nO-LzB4hK7O66VrnqPUsCvVaVn2iaIzrH3zDY"
+ORTHOGONAL_WS_URL=f"wss://{ORTHOGONAL_HOST}/ws/commontask/0/" 
+ORTHOGONAL_HTTP_URL=f"https://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
+
+
+
+USER_AGENT = "Apifox/1.0.0 (https://apifox.com)"
 
 SIMULATION_CMD="o_mcp_simulate"
 
@@ -75,8 +79,10 @@ def plot_simulation_data(ws_response_obj: dict):
     simulation_data_values = ws_response_obj.get("simulation_data_values")
 
     fig, ax = plt.subplots() 
+    x_axis = simulation_data_values.get("time")
     for key, value in simulation_data_values.items():
-        ax.plot(value, label=key)
+        if key != "time":
+            ax.plot(x_axis, value, label=key)
     ax.legend()
     plt.show()
 
@@ -167,23 +173,30 @@ async def modelica_service_available() -> bool:
     Returns:
         bool: if backend modelica service is running, then return true, otherwise return false
     """
+
     headers = {
         "User-Agent": USER_AGENT,
-        "Accept": "application/json",
+        "Accept": "*/*",
+        # "Host": ORTHOGONAL_HOST,
         "Authorization": "Bearer "+ USER_ORTH_TOKEN,
-        "Content-Type": "application/json",
+        # "Content-Type": "application/json",
     }
 
-    print ( headers )
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(ORTHOGONAL_HTTP_URL, headers=headers, timeout=60.0)
+            
             response.raise_for_status()
             return True
-        except Exception as e:
-            print(f"error {e}")
+        except httpx.ConnectError as e:
+            logger.error(f"Connection error: {e}")
             return False
-            # return "#### Error::::  this is a demo response from Orthogonal MCP server ####  "  + str(e)
+        except httpx.HTTPStatusError as e:
+            logger.error(f"HTTP error: {e}, status code: {e.response.status_code}, response text: {e.response.text}")
+            return False
+        except Exception as e:
+            logger.exception(f"An unexpected error occurred: {e}") # 包含 traceback 的完整日志
+            return False
 
 
 @mcp.tool()
@@ -200,7 +213,6 @@ async def modelica_simulate(modelica_code: str) -> dict:
         - "simulation_error_messsage" (str): the detailed error message if simulation fails, which can be used to fix the problem, if success, it will be an empty string.
         - "simulation_data_values" (dict): an dict object for simulation data values, the keys are the names of simulation data, the values are value-list of the corresponding columns.
     """
-
 
     headers = {
         "User-Agent": USER_AGENT,
@@ -264,3 +276,6 @@ if __name__ == "__main__":
         exit (-1)
 
     mcp.run(transport='stdio')
+
+
+
