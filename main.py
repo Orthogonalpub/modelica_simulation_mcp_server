@@ -16,20 +16,18 @@ import copy
 from mcp.server.fastmcp import FastMCP
 import matplotlib.pyplot as plt
 
+USER_ORTH_TOKEN=""
 
 # ORTHOGONAL_HOST="192.168.116.130"
-# USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
+# # USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
 # ORTHOGONAL_WS_URL=f"ws://{ORTHOGONAL_HOST}/ws/commontask/0/" 
 # ORTHOGONAL_HTTP_URL=f"http://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
 
 ORTHOGONAL_HOST="paas.orthogonal.cc"
-USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MTUyNTgyLCJpYXQiOjE3NDQ1NDc3ODIsImp0aSI6IjYwNTM0NzBkNjQxNTQzZjhhYjg2NTE3ZWYzNzhkNTVkIiwidXNlcl9pZCI6OH0.sFUa77nO-LzB4hK7O66VrnqPUsCvVaVn2iaIzrH3zDY"
 ORTHOGONAL_WS_URL=f"wss://{ORTHOGONAL_HOST}/ws/commontask/0/" 
 ORTHOGONAL_HTTP_URL=f"https://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
 
-
-
-USER_AGENT = "Apifox/1.0.0 (https://apifox.com)"
+USER_AGENT = "MCP server"
 
 SIMULATION_CMD="o_mcp_simulate"
 
@@ -139,7 +137,17 @@ def on_open(ws):
 def orth_simulate(modelica_code: str):
 
     global modelica_source_code
+    global USER_ORTH_TOKEN
+
     modelica_source_code = modelica_code
+
+    USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
+    if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
+        return {
+                    "simulation_status": "FAILED",        
+                    "simulation_error_messsage": "Env variable ORTHOGONAL_TOKEN is invalid or missing",
+                    "simulation_data_values": {}
+                } 
 
     custom_headers = {
         "Authorization": f"Bearer {USER_ORTH_TOKEN}",
@@ -162,7 +170,6 @@ def orth_simulate(modelica_code: str):
     )
 
 
-
 @mcp.tool()
 async def modelica_service_available() -> bool:
     """Check whether backend modelica service is running 
@@ -173,6 +180,14 @@ async def modelica_service_available() -> bool:
     Returns:
         bool: if backend modelica service is running, then return true, otherwise return false
     """
+
+    USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
+    if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
+        return {
+                    "simulation_status": "FAILED",        
+                    "simulation_error_messsage": "Env variable ORTHOGONAL_TOKEN is invalid or missing",
+                    "simulation_data_values": {}
+                } 
 
     headers = {
         "User-Agent": USER_AGENT,
@@ -213,6 +228,14 @@ async def modelica_simulate(modelica_code: str) -> dict:
         - "simulation_error_messsage" (str): the detailed error message if simulation fails, which can be used to fix the problem, if success, it will be an empty string.
         - "simulation_data_values" (dict): an dict object for simulation data values, the keys are the names of simulation data, the values are value-list of the corresponding columns.
     """
+
+    USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
+    if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
+        return {
+                    "simulation_status": "FAILED",        
+                    "simulation_error_messsage": "Env variable ORTHOGONAL_TOKEN is invalid or missing",
+                    "simulation_data_values": {}
+                } 
 
     headers = {
         "User-Agent": USER_AGENT,
@@ -265,15 +288,8 @@ async def modelica_simulate(modelica_code: str) -> dict:
             return {"response":"error" + str(e)}
  
 
-
 ####  mcp::::::      run --active --with mcp mcp run orthogonal-mcp-main.py    
 if __name__ == "__main__":
-
-    args = sys.argv
-    USER_ORTH_TOKEN = args[1] if len(args) > 1 else USER_ORTH_TOKEN
-    if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
-        print ("ERROR: missing user token")
-        exit (-1)
 
     mcp.run(transport='stdio')
 

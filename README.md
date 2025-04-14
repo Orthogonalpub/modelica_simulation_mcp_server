@@ -1,5 +1,6 @@
 
-# Modelica MCP Server  -  INTERNAL TEST ONLY, WILL BE READY SOON ~~
+
+# INTERNAL TEST ONLY - will be ready soon 
 
 
 # Modelica MCP Server
@@ -22,6 +23,13 @@ A Model Context Protocol server that provides modelica model simulation capabili
 
 ## Installation
 
+### Get Orthogonal Server token
+- **You need to register in paas.orthogonal.cc**
+- **1, open browser, log into https://paas.orthogonal.cc**
+- **2, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```  **     (Without starting 'Bearer ' ) 
+- **3, record this token, it will be used to fill in mcp configuration**
+
+
 ### Using uv (recommended)
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
@@ -43,7 +51,7 @@ use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_s
 ```uv add mcp[cli] httpx websocket-client pandas --active```
 
 
-## Get Orthogonal token ()
+
 
 
 ## Configuration
@@ -56,7 +64,7 @@ Add to your cursor/Claude settings:
 <summary>Using uvx</summary>
 
 Example:  
-set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation and ensure backend env is ready
+set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation
 ```json
   "mcpServers": {
       "modelica-mcp-server": {
@@ -81,7 +89,8 @@ set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation and en
 
 ### Customization - simulation parameters
 
-The server can be configured to use different simulation parameters `--start-time`.
+The server can be configured to use different simulation parameters `--start-time`, to be added
+
 
 
 ## License
