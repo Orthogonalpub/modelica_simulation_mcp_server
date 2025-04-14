@@ -107,6 +107,7 @@ In future the server can be configured to use different simulation parameters `-
 
 using mcp inspector
 ```mcp dev main.py```
+it needs to add environment variable in mcp inspector window
 
 ## License
 
