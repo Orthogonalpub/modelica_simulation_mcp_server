@@ -31,28 +31,27 @@ A Model Context Protocol server that provides modelica model simulation capabili
 - **1, open browser, log into https://paas.orthogonal.cc**
 - **2, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```  **     (Without starting 'Bearer ' ) 
 - **3, record this token, it will be used to fill in mcp configuration**
-<img src="temp_auth_token.png" width="30%" height="30%">
+<center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
 
 ### Cursor Installation:  using uv (recommended)
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
 
-1. clone mcp server
+1. clone mcp server<br>
 ```git clone https://github.com/Orthogonalpub/modelica_simulation_mcp_server ```
 
-2. enter into the directory
+2. enter into the directory<br>
 ```cd modelica_simulation_mcp_server```
 
-3. create virtual env
+3. create virtual env<br>
 ```uv venv```
 
-4. activate virtual env
+4. activate virtual env<br>
 ```.venv\Scripts\activate```
 
-5. add dependencies
+5. add dependencies<br>
 ```uv add mcp[cli] httpx websocket-client pandas --active```
-
 
 
 ## Configuration
@@ -90,12 +89,18 @@ Example:
 ```
 </details>
 
+after successful installation, the mcp server will be shown and the status icon is GREEN
+<center><img src="./mcp_server_running.png" width="50%" height="50%" ></center>
+
 
 ### Customization - simulation parameters - not supported yet
 
 In future the server can be configured to use different simulation parameters `--stop-time` and `--step-size` ... 
 
+### Debug 
 
+using mcp inspector
+```mcp dev main.py```
 
 ## License
 
