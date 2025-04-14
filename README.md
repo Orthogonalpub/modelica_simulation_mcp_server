@@ -13,8 +13,11 @@ A Model Context Protocol server that provides modelica model simulation capabili
 - `modelica_simulate` - run modelica model simulation by source code.
     - `modelica_code` (string, required): the source code of modelica model
 
+- `modelica_service_available` - check modelica service availability ( later will be used to start backend env ).
+    - no input 
 
-### Prompts
+
+### Prompts - not supported yet
 
 - **Simulation Prompt**
   - Simulation result
@@ -23,14 +26,14 @@ A Model Context Protocol server that provides modelica model simulation capabili
 
 ## Installation
 
-### Get Orthogonal Server token
+### Get  ```ORTHOGONAL_TOKEN```
 - **You need to register in paas.orthogonal.cc**
 - **1, open browser, log into https://paas.orthogonal.cc**
 - **2, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```  **     (Without starting 'Bearer ' ) 
 - **3, record this token, it will be used to fill in mcp configuration**
+<img src="temp_auth_token.png" width="30%" height="30%">
 
-
-### Using uv (recommended)
+### Cursor Installation:  using uv (recommended)
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
@@ -52,19 +55,20 @@ use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_s
 
 
 
-
-
 ## Configuration
 
 ### Configure for cursor/Claude.app
 
-Add to your cursor/Claude settings:
+Add to your cursor/Claude settings:  mcp.json ( located in your user home directly or .cursor/ directory )
+in cursor you can open this file by clicking "Settings" -> "MCP" -> "Add new global MCP server"
 
 <details>
 <summary>Using uvx</summary>
 
 Example:  
-set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation
+1. set "ORTHOGONAL_TOKEN" correctly
+2. set path of "args" and "command" correctly by your local installation
+
 ```json
   "mcpServers": {
       "modelica-mcp-server": {
@@ -87,9 +91,9 @@ set  "command/args/ORTHOGONAL_TOKEN" correctly by your local installation
 </details>
 
 
-### Customization - simulation parameters
+### Customization - simulation parameters - not supported yet
 
-The server can be configured to use different simulation parameters `--start-time`, to be added
+In future the server can be configured to use different simulation parameters `--stop-time` and `--step-size` ... 
 
 
 
