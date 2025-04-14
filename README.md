@@ -40,8 +40,8 @@ What is MCP, refer to https://modelcontextprotocol.io/
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
 
-uv installation
-curl -LsSf https://astral.sh/uv/install.sh | sh
+uv installation <br>
+```curl -LsSf https://astral.sh/uv/install.sh | sh```
 
 
 1. clone mcp server<br>
