@@ -7,6 +7,8 @@
 
 A Model Context Protocol server that provides modelica model simulation capabilities. This server enables LLMs to retrieve and process modelica related tasks.
 
+What is MCP, refer to https://modelcontextprotocol.io/
+
 
 ### Available Tools
 
@@ -37,6 +39,10 @@ A Model Context Protocol server that provides modelica model simulation capabili
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
+
+uv installation
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 
 1. clone mcp server<br>
 ```git clone https://github.com/Orthogonalpub/modelica_simulation_mcp_server ```
