@@ -54,10 +54,14 @@ uv installation <br>
 ```uv venv```
 
 4. activate virtual env<br>
+windows: <br>
 ```.venv\Scripts\activate```
 
+Mac / Linux: <br>
+```source .venv\Scripts\activate```
+
 5. add dependencies<br>
-```uv add mcp[cli] httpx websocket-client pandas --active```
+```uv add "mcp[cli]" httpx websocket-client pandas --active```
 
 
 ## Configuration
