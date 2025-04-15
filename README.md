@@ -54,7 +54,7 @@ uv installation <br>
 ```uv venv```
 
 4. activate virtual env<br>
-windows: <br>
+Windows: <br>
 ```.venv\Scripts\activate```
 
 Mac / Linux: <br>
@@ -78,7 +78,9 @@ Example:
 1. set "ORTHOGONAL_TOKEN" correctly
 2. set path of "args" and "command" correctly by your local installation
 
+<br>Windows mcp.json example <br>
 ```json
+{
   "mcpServers": {
       "modelica-mcp-server": {
           "connectionType": "stdio", 
@@ -96,7 +98,38 @@ Example:
             "autoApprove": []
       }
   }
+}
 ```
+
+
+<br>Mac mcp.json example <br>
+```json
+{
+        "mcpServers": {
+                "modelica-mcp-server": {
+                        "connectionType": "stdio",
+                        "command": "/opt/homebrew/bin/uv",
+                        "args": [
+            			    "--directory",
+           			     "/Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/",
+           			     "run",
+                                     "/Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/main.py"
+                        ],
+                        "env": {
+                                "ORTHOGONAL_TOKEN": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTY2OTQxLCJpYXQiOjE3NDQzNjIxNDEsImp0aSI6ImE5M2RlNDUyMGU1ZDQ3M2RiZjVjOTFhMDgxZDEyYThjIiwidXNlcl9pZCI6NDR9.k0RM8as9PtFX1cvCowOQeZraDPM-Qks4dl9uFauHUH8",
+                                "DEBUG": "true",
+                                "LOG_LEVEL": "verbose",
+                                "PORT": "9223"
+                        },
+                        "disabled": false,
+                        "autoApprove": []
+                }
+        }
+}
+
+```
+
+
 </details>
 
 after successful installation, the mcp server will be shown and the status icon is GREEN
