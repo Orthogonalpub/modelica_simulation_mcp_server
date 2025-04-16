@@ -19,7 +19,6 @@ import matplotlib.pyplot as plt
 USER_ORTH_TOKEN=""
 
 # ORTHOGONAL_HOST="192.168.116.130"
-# # USER_ORTH_TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzE3MDk1LCJpYXQiOjE3NDQxMTIyOTUsImp0aSI6IjMyYTczOTljMDJjZDQxZDBiNWYwNzVmZDBiNjk3YmI4IiwidXNlcl9pZCI6OH0.49PfrGwxpP0yehrb6_bd0TZh4v_uo2pj5jvy10xH18U"
 # ORTHOGONAL_WS_URL=f"ws://{ORTHOGONAL_HOST}/ws/commontask/0/" 
 # ORTHOGONAL_HTTP_URL=f"http://{ORTHOGONAL_HOST}/api/v2/mcp/mcp_checker" 
 
@@ -32,6 +31,7 @@ USER_AGENT = "MCP server"
 SIMULATION_CMD="o_mcp_simulate"
 
 modelica_source_code=""
+modelica_stop_time=1.0
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -117,6 +117,7 @@ def on_close(ws, close_status_code, close_msg):
 def on_open(ws):
 
     global modelica_source_code
+    global modelica_stop_time
 
     data_dict = {
         "ws_msg_type": "request", 
@@ -125,7 +126,8 @@ def on_open(ws):
         "ws_method_param":{ 
             "command": SIMULATION_CMD, 
             "command_param": {
-                "mo_src_code":  modelica_source_code 
+                "mo_src_code":  modelica_source_code,
+                "mo_stop_time":  modelica_stop_time
             }
         } 
     }
@@ -134,12 +136,14 @@ def on_open(ws):
     ws.send(json.dumps(data_dict))
 
 
-def orth_simulate(modelica_code: str):
+def orth_simulate(modelica_code: str, stop_time: float = 1.0):
 
     global modelica_source_code
+    global modelica_stop_time
     global USER_ORTH_TOKEN
 
     modelica_source_code = modelica_code
+    modelica_stop_time = stop_time
 
     USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
     if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
@@ -215,13 +219,15 @@ async def modelica_service_available() -> bool:
 
 
 @mcp.tool()
-async def modelica_simulate(modelica_code: str) -> dict:
+async def modelica_simulate(modelica_code: str, stop_time: float = 1.0) -> dict:
     """Run simulation with modelica code and return simulation result object of dict type
 
     Args:
         modelica_code (str): the input modelica code, which will be sent to modelica simulation mcp server to simuate.
         The input modelica source code must be valid, otherwise simulation will fail
 
+        stop_time (float): the stop time of the simulation， default is 1.0
+        
     Returns:
         dict: the simulation result object with below keys:                
         - "simulation_status" (str): "SUCCESS" or "FAILED", to indicate the simulation is success or failed.     
@@ -262,7 +268,7 @@ async def modelica_simulate(modelica_code: str) -> dict:
                 return ws_response_obj
 
 
-            orth_simulate(modelica_code) 
+            orth_simulate(modelica_code, stop_time) 
 
             check_interval = 2
             check_cnt = 0
