@@ -5,11 +5,64 @@ import sys
 import platform
 import subprocess
 import shutil
+import json
 
 g_os_name = "None"
 g_root_folder = ""
 g_uv_path = ""
 g_target_git_url = "https://github.com/Orthogonalpub/modelica_simulation_mcp_server"
+
+
+g_default_mcp_json_string_windows ='''
+{
+  "mcpServers": {
+          "modelica-mcp-server": {
+              "connectionType": "stdio", 
+              "command": "__PLACEHOLDER_PYTHON_CMD__",
+              "args": [
+                  "__PLACEHOLDER_PYTHON_MAIN__"
+                ],
+                "env": {
+                  "ORTHOGONAL_TOKEN": "__PLACEHOLDER_ORTHOGONAL_TOKEN__",
+                  "DEBUG": "true",
+                  "LOG_LEVEL": "verbose",
+                  "PORT": "9223"
+                  },
+                "disabled": false,
+                "autoApprove": []
+          }
+  }
+}
+'''
+
+g_default_mcp_json_string_mac_linux ='''
+{
+        "mcpServers": {
+                "modelica-mcp-server": {
+                        "connectionType": "stdio",
+                        "command": "__PLACEHOLDER_UV_PATH__",
+                        "args": [
+            			    "--directory",
+           			     "__PLACEHOLDER_RUNNING_FOLDER__",
+           			     "run",
+                                     "__PLACEHOLDER_PYTHON_MAIN__"
+                        ],
+                        "env": {
+                                "ORTHOGONAL_TOKEN": "__PLACEHOLDER_ORTHOGONAL_TOKEN__",
+                                "DEBUG": "true",
+                                "LOG_LEVEL": "verbose",
+                                "PORT": "9223"
+                        },
+                        "disabled": false,
+                        "autoApprove": []
+                }
+        }
+}
+'''
+
+
+
+
 
 def run_command(command: list) -> str:
     global g_os_name
@@ -46,6 +99,8 @@ def main():
     global g_root_folder
     global g_uv_path
     global g_target_git_url
+    global g_default_mcp_json_string_windows
+    global g_default_mcp_json_string_mac_linux
 
     if sys.version_info < (3, 10):
         print("Exit -1, python Version must >= 3.10") 
@@ -59,8 +114,6 @@ def main():
 
     g_os_name = platform.system()
     g_root_folder = os.path.dirname(os.path.abspath(__file__))
-
-
 
     print("######## STEP 2:  check and install uv ... " )
     g_uv_path = shutil.which("uv")
@@ -87,19 +140,8 @@ def main():
             sys.exit(1)
 
 
-
     print("######## STEP 3:  download from github ... " )
     local_path = g_target_git_url[g_target_git_url.rfind("/")+1:]
-
-
-
-
-    if os.path.isdir( local_path):
-         shutil.rmtree(local_path)
-
-
-
-
     if os.path.exists( local_path ):
         print(f"Exit -1, target path exists [{local_path}], please remove it" )
         sys.exit(1) 
@@ -109,29 +151,59 @@ def main():
     except Exception as e:
         print ( f"Failed enter into {local_path}, exit -1")
         sys.exit(-1)
+    
 
-
-
-    print("######## STEP 4:  create virtual venv and activate:  22222222222222222222222222222222 333333333333333333333333333333333" + os.getcwd() )
+    print("######## STEP 4:  create virtual venv and activate: " + os.getcwd() )
     _, _ = run_command( ["uv", "venv" ] )
     if g_os_name == "Windows":
         t_file = ".venv\\Scripts\\activate"
-        if os.path.isfile(t_file):
-            print ("11111111111111111111111111111111111111111111111", t_file, os.getcwd() )
-            os.system( t_file + " ;  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active" )
-            print ("2222222222222222222222222222222222222222")
-            os.system("uv pip list")
-        else:
-            print (f"Invalid virtual env [{local_path}], exit -1") 
-            sys.exit(1)
     else:
         t_file = ".venv/bin/activate"
-        if os.path.isfile(t_file):
-            result_data, result_err_msg = run_command( ["source", t_file] )
-            print (f"{result_data} {result_err_msg}")
+
+    if os.path.isfile(t_file):
+        os.system( t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active" )
+    else:
+        print (f"Invalid virtual env [{local_path}], exit -1") 
+        sys.exit(1)
+
+
+
+    print("######## STEP 5:  create cursor configuration mcp.json ... " )
+    if os.path.isfile( ".cursor" ):
+        print("Exit -1, .cursor exists in current folder and it should not be a file") 
+        exit( -1 ) 
+    os.makedirs(".cursor", exist_ok=True)
+    mcp_config_path = os.path.join ( ".cursor", "mcp.json")
+    if os.path.isfile( mcp_config_path ):
+        try:
+            with open(mcp_config_path, 'r', encoding='utf-8') as f:  # 推荐使用 UTF-8 编码
+                mcp_json_dict = json.load(f)
+        except FileNotFoundError:
+            print(f"Error file not found'{mcp_config_path}'")
+            sys.exit( -1 )
+        except json.JSONDecodeError:
+            print(f"Json file format error: '{mcp_config_path}'")
+            sys.exit( -1 )
+        except Exception as e:
+            print(f"Unknown error: {e}")
+            sys.exit( -1 )
+
+    else:
+        if g_os_name == "Windows":
+            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", "1111").replace("__PLACEHOLDER_PYTHON_MAIN__", "000").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
         else:
-            print (f"Invalid virtual env [{local_path}], exit -1") 
-            sys.exit(1)
+            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_UV_PATH__", "1111").replace("__PLACEHOLDER_RUNNING_FOLDER__", "000").replace("__PLACEHOLDER_PYTHON_MAIN__","sss").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
+
+        try:
+            data = json.loads(mcp_string)
+        except Exception as e:
+            print(f"JSON load error ：{e}")            
+            sys.exit( -1 )
+
+
+        with open("a.json", 'w', encoding='utf-8') as f: 
+            json.dump(data, f, indent=4, ensure_ascii=False)  
+            print ("hahaha" , data )
 
 
 
