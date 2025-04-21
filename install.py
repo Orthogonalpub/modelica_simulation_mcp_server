@@ -169,10 +169,11 @@ def main():
 
 
     print("######## STEP 5:  create cursor configuration mcp.json ... " )
+    os.chdir( g_root_folder ) 
     if os.path.isfile( ".cursor" ):
         print("Exit -1, .cursor exists in current folder and it should not be a file") 
         exit( -1 ) 
-    os.makedirs(".cursor", exist_ok=True)
+    os.makedirs(".cursor", exist_ok=True)    
     mcp_config_path = os.path.join ( ".cursor", "mcp.json")
     if os.path.isfile( mcp_config_path ):
         try:
@@ -190,7 +191,7 @@ def main():
 
     else:
         if g_os_name == "Windows":
-            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", "1111").replace("__PLACEHOLDER_PYTHON_MAIN__", "000").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
+            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
         else:
             mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_UV_PATH__", "1111").replace("__PLACEHOLDER_RUNNING_FOLDER__", "000").replace("__PLACEHOLDER_PYTHON_MAIN__","sss").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
 
@@ -200,10 +201,9 @@ def main():
             print(f"JSON load error ：{e}")            
             sys.exit( -1 )
 
-
-        with open("a.json", 'w', encoding='utf-8') as f: 
+        with open(mcp_config_path, 'w', encoding='utf-8') as f: 
             json.dump(data, f, indent=4, ensure_ascii=False)  
-            print ("hahaha" , data )
+            os.system(f"cat {mcp_config_path}")
 
 
 
