@@ -216,7 +216,7 @@ async def modelica_service_available() -> bool:
             logger.error(f"HTTP error: {e}, status code: {e.response.status_code}, response text: {e.response.text}")
             return False
         except Exception as e:
-            logger.exception(f"An unexpected error occurred: {e}") # 包含 traceback 的完整日志
+            logger.exception(f"An unexpected error occurred: {e}") 
             return False
 
 

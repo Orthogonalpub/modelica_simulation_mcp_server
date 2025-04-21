@@ -9,6 +9,7 @@ import shutil
 g_os_name = "None"
 g_root_folder = ""
 g_uv_path = ""
+g_target_git_url = "https://github.com/Orthogonalpub/modelica_simulation_mcp_server"
 
 def run_command(command: list) -> str:
     global g_os_name
@@ -44,6 +45,7 @@ def main():
     global g_os_name
     global g_root_folder
     global g_uv_path
+    global g_target_git_url
 
     if sys.version_info < (3, 10):
         print("Exit -1, python Version must >= 3.10") 
@@ -56,13 +58,11 @@ def main():
         exit( -1 ) 
 
     g_os_name = platform.system()
-
     g_root_folder = os.path.dirname(os.path.abspath(__file__))
 
-    # data_file = os.path.join(script_dir, "data", "my_data.txt")  # 使用 os.path.join
+
 
     print("######## STEP 2:  check and install uv ... " )
-
     g_uv_path = shutil.which("uv")
     if g_uv_path:
         pass
@@ -85,6 +85,56 @@ def main():
         else:            
             print("Failed to install uv")
             sys.exit(1)
+
+
+
+    print("######## STEP 3:  download from github ... " )
+    local_path = g_target_git_url[g_target_git_url.rfind("/")+1:]
+
+
+
+
+    if os.path.isdir( local_path):
+         shutil.rmtree(local_path)
+
+
+
+
+    if os.path.exists( local_path ):
+        print(f"Exit -1, target path exists [{local_path}], please remove it" )
+        sys.exit(1) 
+    _, _ = run_command( ["git", "clone", g_target_git_url] )
+    try:
+      os.chdir( local_path ) 
+    except Exception as e:
+        print ( f"Failed enter into {local_path}, exit -1")
+        sys.exit(-1)
+
+
+
+    print("######## STEP 4:  create virtual venv and activate:  22222222222222222222222222222222 333333333333333333333333333333333" + os.getcwd() )
+    _, _ = run_command( ["uv", "venv" ] )
+    if g_os_name == "Windows":
+        t_file = ".venv\\Scripts\\activate"
+        if os.path.isfile(t_file):
+            print ("11111111111111111111111111111111111111111111111", t_file, os.getcwd() )
+            os.system( t_file + " ;  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active" )
+            print ("2222222222222222222222222222222222222222")
+            os.system("uv pip list")
+        else:
+            print (f"Invalid virtual env [{local_path}], exit -1") 
+            sys.exit(1)
+    else:
+        t_file = ".venv/bin/activate"
+        if os.path.isfile(t_file):
+            result_data, result_err_msg = run_command( ["source", t_file] )
+            print (f"{result_data} {result_err_msg}")
+        else:
+            print (f"Invalid virtual env [{local_path}], exit -1") 
+            sys.exit(1)
+
+
+
 
     print ("================================= INSTALLATION SUCCESS =============================================")
 
