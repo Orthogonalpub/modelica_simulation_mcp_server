@@ -10,5 +10,6 @@ dependencies = [
     "matplotlib>=3.10.1",
     "mcp[cli]>=1.6.0",
     "pandas>=2.2.3",
+    "pydantic>=2.11.3",
     "websocket-client>=1.8.0",
 ]

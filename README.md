@@ -61,7 +61,7 @@ Mac / Linux: <br>
 ```source .venv\Scripts\activate```<br>
 
 5. add dependencies<br>
-```uv add "mcp[cli]" httpx websocket-client pandas --active```
+```uv add "mcp[cli]" httpx websocket-client pandas pydantic  --active```
 
 
 ## Configuration

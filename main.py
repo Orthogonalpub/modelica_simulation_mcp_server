@@ -15,6 +15,8 @@ import copy
 
 from mcp.server.fastmcp import FastMCP
 import matplotlib.pyplot as plt
+from pydantic import Field
+
 
 USER_ORTH_TOKEN=""
 
@@ -219,21 +221,25 @@ async def modelica_service_available() -> bool:
 
 
 @mcp.tool()
-async def modelica_simulate(modelica_code: str, stop_time: float = 1.0) -> dict:
+async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code"), 
+                            stop_time: float = Field(default=1.0, gt=0.0, le=30.0, description="Stop time of simulation in seconds. Default is 1.0")
+                            ) -> dict:
+
     """Run simulation with modelica code and return simulation result object of dict type
 
     Args:
-        modelica_code (str): the input modelica code, which will be sent to modelica simulation mcp server to simuate.
-        The input modelica source code must be valid, otherwise simulation will fail
+        modelica_code (str): the input modelica code, which will be sent to modelica simulation mcp server to simuate. The input modelica source code must be valid, otherwise simulation will fail
 
-        stop_time (float): the stop time of the simulation， default is 1.0
+        stop_time (float): the stop time of the simulation in seconds, default is 1.0 
         
     Returns:
-        dict: the simulation result object with below keys:                
-        - "simulation_status" (str): "SUCCESS" or "FAILED", to indicate the simulation is success or failed.     
-        - "simulation_error_messsage" (str): the detailed error message if simulation fails, which can be used to fix the problem, if success, it will be an empty string.
-        - "simulation_data_values" (dict): an dict object for simulation data values, the keys are the names of simulation data, the values are value-list of the corresponding columns.
+        dict: the simulation result， it is an object containing below keys:                
+        * `"simulation_status"` (str): "SUCCESS" or "FAILED", to indicate the simulation is success or failed.     
+        * `"simulation_error_messsage"` (str): the detailed error message if simulation fails, which can be used to fix the problem, if success, it will be an empty string.
+        * `"simulation_data_values"` (dict): an dict object for simulation data values, the keys are the names of simulation data, the values are value-list of the corresponding columns.
     """
+
+
 
     USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
     if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
