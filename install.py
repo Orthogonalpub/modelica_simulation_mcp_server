@@ -12,6 +12,7 @@ g_root_folder = ""
 g_uv_path = ""
 g_target_git_url = "https://github.com/Orthogonalpub/modelica_simulation_mcp_server"
 
+g_mcp_server_unique_name = "modelica-mcp-server"
 
 g_default_mcp_json_string_windows ='''
 {
@@ -173,6 +174,18 @@ def main():
     if os.path.isfile( ".cursor" ):
         print("Exit -1, .cursor exists in current folder and it should not be a file") 
         exit( -1 ) 
+
+    if g_os_name == "Windows":
+        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
+    else:
+        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_UV_PATH__", "1111").replace("__PLACEHOLDER_RUNNING_FOLDER__", "000").replace("__PLACEHOLDER_PYTHON_MAIN__","sss").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
+    try:
+        new_mcp_json_dict = json.loads(mcp_string)
+    except Exception as e:
+        print(f"JSON load error ：{e}")            
+        sys.exit( -1 )        
+
+
     os.makedirs(".cursor", exist_ok=True)    
     mcp_config_path = os.path.join ( ".cursor", "mcp.json")
     if os.path.isfile( mcp_config_path ):
@@ -188,22 +201,19 @@ def main():
         except Exception as e:
             print(f"Unknown error: {e}")
             sys.exit( -1 )
+        
+        if mcp_json_dict.get("mcpServers"):
+            mcp_json_dict["mcpServers"][g_mcp_server_unique_name] = new_mcp_json_dict["mcpServers"][g_mcp_server_unique_name]
+        else:
+            mcp_json_dict["mcpServers"] = new_mcp_json_dict["mcpServers"]
 
     else:
-        if g_os_name == "Windows":
-            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
-        else:
-            mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_UV_PATH__", "1111").replace("__PLACEHOLDER_RUNNING_FOLDER__", "000").replace("__PLACEHOLDER_PYTHON_MAIN__","sss").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
+        mcp_json_dict = new_mcp_json_dict
 
-        try:
-            data = json.loads(mcp_string)
-        except Exception as e:
-            print(f"JSON load error ：{e}")            
-            sys.exit( -1 )
 
-        with open(mcp_config_path, 'w', encoding='utf-8') as f: 
-            json.dump(data, f, indent=4, ensure_ascii=False)  
-            os.system(f"cat {mcp_config_path}")
+
+    with open(mcp_config_path, 'w', encoding='utf-8') as f: 
+        json.dump(mcp_json_dict, f, indent=4, ensure_ascii=False)  
 
 
 
