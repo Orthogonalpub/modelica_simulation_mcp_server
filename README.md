@@ -58,7 +58,7 @@ uv installation <br>
 <p><b>Windows:</b> <br>
 ```.venv\Scripts\activate```<br>
 
-<p><b>MAX / Linux:</b> <br>
+<p><b>Mac / Linux:</b> <br>
 ```source .venv/bin/activate```<br>
 
 5. add dependencies<br>
