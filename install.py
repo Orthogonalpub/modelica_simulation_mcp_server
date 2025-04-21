@@ -4,9 +4,11 @@ import os
 import sys
 import platform
 import subprocess
+import shutil
 
 g_os_name = "None"
 g_root_folder = ""
+g_uv_path = ""
 
 def run_command(command: list) -> str:
     global g_os_name
@@ -41,12 +43,13 @@ def main():
 
     global g_os_name
     global g_root_folder
+    global g_uv_path
 
     if sys.version_info < (3, 10):
         print("Exit -1, python Version must >= 3.10") 
         exit( -1 )
 
-    # STEP 1:  ensure orthogonal token is given ########################################################
+    print("######## STEP 1:  ensure orthogonal token is given ... " )
     if len(sys.argv) != 2:
         print("Exit -1, ORTHOGONAL TOKEN must be set") 
         print(f"Example: {sys.argv[0]}  orthogonal_token ") 
@@ -58,22 +61,33 @@ def main():
 
     # data_file = os.path.join(script_dir, "data", "my_data.txt")  # 使用 os.path.join
 
+    print("######## STEP 2:  check and install uv ... " )
 
-    # step 2:  check orthogonal token ########################################################
-    if g_os_name == "Windows":
-        command = ["cmd", "/c", "dir /b"]  # Execute 'dir /b' using cmd.exe
-    elif g_os_name == "Darwin":
-        command = ["ls", "-l"]
-    elif g_os_name == "Linux":
-        command = ["ls", "-l"]
-    else:
-        print("Not supported os system", g_os_name )
-        sys.exit(1)
+    g_uv_path = shutil.which("uv")
+    if g_uv_path:
+        pass
+    else:  
+        if g_os_name == "Windows":
+            command = ["pip", "install", "uv"] 
+        elif g_os_name == "Darwin":
+            command = ["pip", "install", "uv"] 
+        elif g_os_name == "Linux":
+            command = ["pip", "install", "uv"] 
+        else:
+            print("Not supported os system", g_os_name )
+            sys.exit(1)
 
-    result_data, result_err_msg = run_command( command )
+        result_data, result_err_msg = run_command( command )
 
-    print ("=============================================")
-    print (result_data, result_err_msg ) 
+        g_uv_path = shutil.which("uv")
+        if g_uv_path:
+            pass
+        else:            
+            print("Failed to install uv")
+            sys.exit(1)
+
+    print ("================================= INSTALLATION SUCCESS =============================================")
+
 
 
 if __name__ == "__main__":
