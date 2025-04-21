@@ -54,11 +54,12 @@ uv installation <br>
 ```uv venv```
 
 4. activate virtual env<br>
-Windows: <br>
+
+<p><b>Windows:</b> <br>
 ```.venv\Scripts\activate```<br>
 
-Mac / Linux: <br>
-```source .venv\Scripts\activate```<br>
+<p><b>MAX / Linux:</b> <br>
+```source .venv/bin/activate```<br>
 
 5. add dependencies<br>
 ```uv add "mcp[cli]" httpx websocket-client pandas pydantic  --active```
@@ -78,7 +79,14 @@ Example:
 1. set "ORTHOGONAL_TOKEN" correctly
 2. set path of "args" and "command" correctly by your local installation
 
-<br>Windows mcp.json example <br>
+<p><b>Windows</b>
+<br> mcp.json example <br>
+
+Make sure to change below settings according to your installation: 
+``` /opt/homebrew/bin/uv ```
+``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/ ```
+``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/main.py ```
+
 ```json
 {
   "mcpServers": {
@@ -102,7 +110,14 @@ Example:
 ```
 
 
-<br>Mac mcp.json example <br>
+<p><b>Mac / Linux</b>
+<br> mcp.json example <br>
+
+Make sure to change below settings according to your installation: 
+``` /opt/homebrew/bin/uv ```
+``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/ ```
+``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/main.py ```
+
 ```json
 {
         "mcpServers": {
