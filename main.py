@@ -221,8 +221,8 @@ async def modelica_service_available() -> bool:
 
 
 @mcp.tool()
-async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code"), 
-                            stop_time: float = Field(default=1.0, gt=0.0, le=30.0, description="Stop time of simulation in seconds. Default is 1.0")
+async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code, the type is string"), 
+                            stop_time: float = Field(default=1.0, gt=0.0, le=30.0, description="Stop time of simulation in seconds, the type is float and default value is 1.0")
                             ) -> dict:
 
     """Run simulation with modelica code and return simulation result object of dict type
