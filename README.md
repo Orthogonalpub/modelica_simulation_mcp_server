@@ -2,7 +2,6 @@
 
 # INTERNAL TEST ONLY - will be ready soon 
 
-
 # Modelica MCP Server
 
 A Model Context Protocol server that provides modelica model simulation capabilities. This server enables LLMs to retrieve and process modelica related tasks.
@@ -16,13 +15,6 @@ What is MCP, refer to https://modelcontextprotocol.io/
     - `modelica_code` (string, required): the source code of modelica model
     - `stop_time` (float, optional, default=1.0): stop time of simulation
 
-
-### Prompts - not supported yet
-
-- **Simulation Prompt**
-  - Simulation result
-  - Arguments:
-    - `modelica code` (string, required): ...
 
 ## Installation
 
