@@ -18,9 +18,9 @@ What is MCP, refer to https://modelcontextprotocol.io/
 ## Installation
 
 ### Pre-requests
-- python installed,  ```Mac:  brew install python@3.9```
-- wget tool installed (or you can download installation script manully ),  ```Mac: brew install wget```
-- uv installed   ```Mac: brew install uv``` 
+- python installed；   ```macOS install command:  brew install python@3.9```
+- wget tool installed (or you can download installation script manully );  ```macOS install command: brew install wget```
+- uv installed;   ```macOS install command: brew install uv``` 
 
 
 ### Step 1: get  ```ORTHOGONAL_TOKEN```
