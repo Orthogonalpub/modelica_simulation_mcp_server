@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 .venv
+.cursor
 uv.lock
 __pycache__/
 *.py[cod]

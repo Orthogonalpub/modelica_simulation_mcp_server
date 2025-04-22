@@ -15,9 +15,6 @@ What is MCP, refer to https://modelcontextprotocol.io/
 - `modelica_simulate` - run modelica model simulation by source code.
     - `modelica_code` (string, required): the source code of modelica model
 
-- `modelica_service_available` - check modelica service availability ( later will be used to start backend env ).
-    - no input 
-
 
 ### Prompts - not supported yet
 
@@ -34,6 +31,13 @@ What is MCP, refer to https://modelcontextprotocol.io/
 2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```      (Without starting 'Bearer ' ) 
 3. Record this token, it will be used to fill in mcp configuration
 <center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
+
+### Simple install
+
+replace below "ORTHOGONAL_TOKEN" with your token
+```wget http://8.130.12.12/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install.py ORTHOGONAL_TOKEN   ```
+
+
 
 ### Cursor Installation:  using uv (recommended)
 
