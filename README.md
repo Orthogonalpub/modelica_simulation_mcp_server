@@ -35,7 +35,9 @@ What is MCP, refer to https://modelcontextprotocol.io/
 ### Simple install
 
 replace below "ORTHOGONAL_TOKEN" with your token
+<p><b>
 ```wget http://8.130.12.12/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install.py ORTHOGONAL_TOKEN   ```
+</b>
 
 
 
