@@ -23,15 +23,14 @@ What is MCP, refer to https://modelcontextprotocol.io/
 - wget tool installed (or you can download installation script manully )
 
 
-### Step 1:   Get  ```"ORTHOGONAL_TOKEN"```
+### Step 1: get  ```ORTHOGONAL_TOKEN```
 - **You need to register in paas.orthogonal.cc**
 1. Logging to orthogonal:  open browser, log into https://paas.orthogonal.cc
 2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1OTA4NTk0LCJpYXQiOjE3NDUzMDM3OTQsImp0aSI6IjAxOWI3YWIxODg0YjRiZDE4MzE4ZmI4ZjVlNTI1OTI1IiwidXNlcl9pZCI6OH0.JwN3wjohjMUJZhWVB0rsePujn85Hq0ltg0d4HuXkc2Y```      (Without starting 'Bearer ' ) 
 3. Record this token, it will be used to fill in mcp configuration
 <center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
-4. (Optional for cursor config) Enter into your cursor project root folder ( will automatically create mcp.json) <br>
 
-### Step 2:  run installation script
+### Step 2: run installation script
 replace below "ORTHOGONAL_TOKEN" with your token
 <p><b>
 wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py  ORTHOGONAL_TOKEN
