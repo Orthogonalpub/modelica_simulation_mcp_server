@@ -34,7 +34,7 @@ What is MCP, refer to https://modelcontextprotocol.io/
 ### Get  ```"ORTHOGONAL_TOKEN"```
 - **You need to register in paas.orthogonal.cc**
 1. Logging to orthogonal:  open browser, log into https://paas.orthogonal.cc
-2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```      (Without starting 'Bearer ' ) 
+2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1OTA4NTk0LCJpYXQiOjE3NDUzMDM3OTQsImp0aSI6IjAxOWI3YWIxODg0YjRiZDE4MzE4ZmI4ZjVlNTI1OTI1IiwidXNlcl9pZCI6OH0.JwN3wjohjMUJZhWVB0rsePujn85Hq0ltg0d4HuXkc2Y```      (Without starting 'Bearer ' ) 
 3. Record this token, it will be used to fill in mcp configuration
 <center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
 4. (Optional for cursor config) Enter into your cursor project root folder ( will automatically create mcp.json) <br>
@@ -47,7 +47,7 @@ wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O in
 </b>
 <p>
 example:<br>
-wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTY2OTQxLCJpYXQiOjE3NDQzNjIxNDEsImp0aSI6ImE5M2RlNDUyMGU1ZDQ3M2RiZjVjOTFhMDgxZDEyYThjIiwidXNlcl9pZCI6NDR9.k0RM8as9PtFX1cvCowOQeZraDPM-Qks4dl9uFauHUH8"<br>
+wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1OTA4NTk0LCJpYXQiOjE3NDUzMDM3OTQsImp0aSI6IjAxOWI3YWIxODg0YjRiZDE4MzE4ZmI4ZjVlNTI1OTI1IiwidXNlcl9pZCI6OH0.JwN3wjohjMUJZhWVB0rsePujn85Hq0ltg0d4HuXkc2Y"<br>
 
 
 <br>
