@@ -84,7 +84,7 @@ Add to your cursor/Claude settings:  mcp.json ( located in your user home direct
 in cursor you can open this file by clicking "Settings" -> "MCP" -> "Add new global MCP server"
 
 <details>
-<summary>Using uvx</summary>
+<summary>Windows and Mac/Linux mcp.json examples</summary>
 
 Example:  
 1. set "ORTHOGONAL_TOKEN" correctly
