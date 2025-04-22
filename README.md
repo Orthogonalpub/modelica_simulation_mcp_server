@@ -26,13 +26,18 @@ What is MCP, refer to https://modelcontextprotocol.io/
 
 ## Installation
 
+### Pre-requests
+python version >= 3.10
+
+
 ### Get  ```"ORTHOGONAL_TOKEN"```
 - **You need to register in paas.orthogonal.cc**
 1. Logging to orthogonal:  open browser, log into https://paas.orthogonal.cc
 2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```      (Without starting 'Bearer ' ) 
 3. Record this token, it will be used to fill in mcp configuration
 <center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
-4. Run install script
+4. (Optional for cursor config) Enter into your cursor project root folder ( will automatically create mcp.json) 
+5. Run install script
 replace below "ORTHOGONAL_TOKEN" with your token
 <p><b>
 wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py  ORTHOGONAL_TOKEN
@@ -45,8 +50,7 @@ wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O in
 The printed message "=== INSTALLATION SUCCESS ===" indicates the succeeded install
 
 
-<!--     commented out as install detailed steps
-### 2. Cursor Installation:  using uv (recommended)
+### FOR reference ONLY：   Cursor Installation:  using uv (recommended)
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
@@ -74,7 +78,7 @@ uv installation <br>
 
 5. add dependencies<br>
 ```uv add "mcp[cli]" httpx websocket-client pandas pydantic  --active```
--->
+
 
 ## Configuration
 

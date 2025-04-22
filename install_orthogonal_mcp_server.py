@@ -103,6 +103,10 @@ def main():
     global g_default_mcp_json_string_windows
     global g_default_mcp_json_string_mac_linux
 
+    failed_flag_file = "failed.txt"
+    if os.path.isfile( failed_flag_file ):
+        os.remove(failed_flag_file)
+
     if sys.version_info < (3, 10):
         print("Exit -1, python Version must >= 3.10") 
         exit( -1 )
@@ -147,11 +151,11 @@ def main():
         print(f"Exit -1, target path exists [{local_path}], please remove it" )
         sys.exit(1) 
     _, _ = run_command( ["git", "clone", g_target_git_url] )
-    try:
-      os.chdir( local_path ) 
-    except Exception as e:
-        print ( f"Failed enter into {local_path}, exit -1")
-        sys.exit(-1)
+    # try:
+    #   os.chdir( local_path ) 
+    # except Exception as e:
+    #     print ( f"Failed enter into {local_path}, exit -1")
+    #     sys.exit(-1)
     
 
     print("######## STEP 4:  create virtual venv and activate: " + os.getcwd() )
@@ -162,9 +166,20 @@ def main():
         t_file = ".venv/bin/activate"
 
     if os.path.isfile(t_file):
-        os.system( t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active" )
+        if g_os_name == "Windows":
+            command = t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active " 
+        else:
+            # command = "source " + t_file + " && pip install uv  &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active   "  
+            command = "source " + t_file + " && pip install uv  -i https://pypi.tuna.tsinghua.edu.cn/simple   &&  uv pip install \"mcp[cli]\" httpx websocket-client pandas pydantic -i https://pypi.tuna.tsinghua.edu.cn/simple  "  
+
+        print (f"Now to run command [{command}]")
+        os.system( command )
     else:
         print (f"Invalid virtual env [{local_path}], exit -1") 
+        sys.exit(1)
+
+    if os.path.isfile( failed_flag_file ):
+        print (f"Invalid venv install [{local_path}], exit -1") 
         sys.exit(1)
 
 
@@ -176,9 +191,9 @@ def main():
         exit( -1 ) 
 
     if g_os_name == "Windows":
-        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
+        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(local_path, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
     else:
-        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_UV_PATH__", "1111").replace("__PLACEHOLDER_RUNNING_FOLDER__", "000").replace("__PLACEHOLDER_PYTHON_MAIN__","sss").replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__","22222", ) 
+        mcp_string = g_default_mcp_json_string_mac_linux.replace("__PLACEHOLDER_UV_PATH__", g_uv_path ).replace("__PLACEHOLDER_RUNNING_FOLDER__", local_path).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(local_path, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__",sys.argv[1]) 
     try:
         new_mcp_json_dict = json.loads(mcp_string)
     except Exception as e:
