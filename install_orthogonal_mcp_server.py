@@ -107,9 +107,9 @@ def main():
     if os.path.isfile( failed_flag_file ):
         os.remove(failed_flag_file)
 
-    if sys.version_info < (3, 10):
-        print("Exit -1, python Version must >= 3.10") 
-        exit( -1 )
+    # if sys.version_info < (3, 10):
+    #     print("Exit -1, python Version must >= 3.10") 
+    #     exit( -1 )
 
     print("######## STEP 1:  ensure orthogonal token is given ... " )
     if len(sys.argv) != 2:
