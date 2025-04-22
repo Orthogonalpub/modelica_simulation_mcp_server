@@ -151,11 +151,11 @@ def main():
         print(f"Exit -1, target path exists [{local_path}], please remove it" )
         sys.exit(1) 
     _, _ = run_command( ["git", "clone", g_target_git_url] )
-    # try:
-    #   os.chdir( local_path ) 
-    # except Exception as e:
-    #     print ( f"Failed enter into {local_path}, exit -1")
-    #     sys.exit(-1)
+    try:
+      os.chdir( local_path ) 
+    except Exception as e:
+        print ( f"Failed enter into {local_path}, exit -1")
+        sys.exit(-1)
     
 
     print("######## STEP 4:  create virtual venv and activate: " + os.getcwd() )
@@ -185,7 +185,9 @@ def main():
 
 
     print("######## STEP 5:  create cursor configuration mcp.json ... " )
+    
     os.chdir( g_root_folder ) 
+
     if os.path.isfile( ".cursor" ):
         print("Exit -1, .cursor exists in current folder and it should not be a file") 
         exit( -1 ) 
