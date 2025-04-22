@@ -27,7 +27,8 @@ What is MCP, refer to https://modelcontextprotocol.io/
 ## Installation
 
 ### Pre-requests
-python version >= 3.10
+- python installed
+- wget tool installed (or you can download installation script manully )
 
 
 ### Get  ```"ORTHOGONAL_TOKEN"```

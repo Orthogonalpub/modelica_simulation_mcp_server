@@ -128,9 +128,9 @@ def main():
         if g_os_name == "Windows":
             command = ["pip", "install", "uv"] 
         elif g_os_name == "Darwin":
-            command = ["pip", "install", "uv"] 
+            command = ["pip3", "install", "uv"] 
         elif g_os_name == "Linux":
-            command = ["pip", "install", "uv"] 
+            command = ["pip3", "install", "uv"] 
         else:
             print("Not supported os system", g_os_name )
             sys.exit(1)
@@ -152,7 +152,7 @@ def main():
         sys.exit(1) 
     _, _ = run_command( ["git", "clone", g_target_git_url] )
     try:
-      os.chdir( local_path ) 
+        os.chdir( local_path ) 
     except Exception as e:
         print ( f"Failed enter into {local_path}, exit -1")
         sys.exit(-1)
@@ -169,8 +169,8 @@ def main():
         if g_os_name == "Windows":
             command = t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active " 
         else:
-            # command = "source " + t_file + " && pip install uv  &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active   "  
-            command = "source " + t_file + " && pip install uv  -i https://pypi.tuna.tsinghua.edu.cn/simple  &&  uv pip install \"mcp[cli]\" httpx websocket-client pandas pydantic -i https://pypi.tuna.tsinghua.edu.cn/simple  "  
+            # command = "source " + t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active   "  
+            command = "source " + t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic --active  || date > %s "  % failed_flag_file
 
         print (f"Now to run command [{command}]")
         os.system( command )
@@ -181,7 +181,6 @@ def main():
     if os.path.isfile( failed_flag_file ):
         print (f"Invalid venv install [{local_path}], exit -1") 
         sys.exit(1)
-
 
 
     print("######## STEP 5:  create cursor configuration mcp.json ... " )
@@ -207,7 +206,7 @@ def main():
     mcp_config_path = os.path.join ( ".cursor", "mcp.json")
     if os.path.isfile( mcp_config_path ):
         try:
-            with open(mcp_config_path, 'r', encoding='utf-8') as f:  # 推荐使用 UTF-8 编码
+            with open(mcp_config_path, 'r', encoding='utf-8') as f: 
                 mcp_json_dict = json.load(f)
         except FileNotFoundError:
             print(f"Error file not found'{mcp_config_path}'")
