@@ -15,7 +15,6 @@ What is MCP, refer to https://modelcontextprotocol.io/
     - `modelica_code` (string, required): the source code of modelica model
     - `stop_time` (float, optional, default=1.0): stop time of simulation
 
-
 ## Installation
 
 ### Pre-requests
