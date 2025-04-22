@@ -38,10 +38,12 @@ replace below "ORTHOGONAL_TOKEN" with your token
 wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py  ORTHOGONAL_TOKEN
 </b>
 <p>
-example:
-```wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTY2OTQxLCJpYXQiOjE3NDQzNjIxNDEsImp0aSI6ImE5M2RlNDUyMGU1ZDQ3M2RiZjVjOTFhMDgxZDEyYThjIiwidXNlcl9pZCI6NDR9.k0RM8as9PtFX1cvCowOQeZraDPM-Qks4dl9uFauHUH8"```
+example:<br>
+wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTY2OTQxLCJpYXQiOjE3NDQzNjIxNDEsImp0aSI6ImE5M2RlNDUyMGU1ZDQ3M2RiZjVjOTFhMDgxZDEyYThjIiwidXNlcl9pZCI6NDR9.k0RM8as9PtFX1cvCowOQeZraDPM-Qks4dl9uFauHUH8"<br>
 
+<br>
 The printed message "=== INSTALLATION SUCCESS ===" indicates the succeeded install
+
 
 <!--     commented out as install detailed steps
 ### 2. Cursor Installation:  using uv (recommended)
@@ -123,9 +125,9 @@ Make sure to change below settings according to your installation:
 <br> mcp.json example <br>
 
 Make sure to change below settings according to your installation: 
-``` /opt/homebrew/bin/uv ```
-``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/ ```
-``` /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/main.py ```
+``` command:  /opt/homebrew/bin/uv ```
+``` args:     /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/ ```
+``` args:     /Users/rainnie/Downloads/halo/modelica_simulation_mcp_server/main.py ```
 
 ```json
 {
