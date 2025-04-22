@@ -170,7 +170,7 @@ def main():
             command = t_file + " &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active " 
         else:
             # command = "source " + t_file + " && pip install uv  &&  uv add \"mcp[cli]\" httpx websocket-client pandas pydantic  --active   "  
-            command = "source " + t_file + " && pip install uv  -i https://pypi.tuna.tsinghua.edu.cn/simple   &&  uv pip install \"mcp[cli]\" httpx websocket-client pandas pydantic -i https://pypi.tuna.tsinghua.edu.cn/simple  "  
+            command = "source " + t_file + " && pip install uv  -i https://pypi.tuna.tsinghua.edu.cn/simple  &&  uv pip install \"mcp[cli]\" httpx websocket-client pandas pydantic -i https://pypi.tuna.tsinghua.edu.cn/simple  "  
 
         print (f"Now to run command [{command}]")
         os.system( command )
@@ -191,7 +191,7 @@ def main():
         exit( -1 ) 
 
     if g_os_name == "Windows":
-        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(local_path, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
+        mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, local_path, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
     else:
         mcp_string = g_default_mcp_json_string_mac_linux.replace("__PLACEHOLDER_UV_PATH__", g_uv_path ).replace("__PLACEHOLDER_RUNNING_FOLDER__", os.path.join(g_root_folder,local_path)).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, local_path, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__",sys.argv[1]) 
     try:
