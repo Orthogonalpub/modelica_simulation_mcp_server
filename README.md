@@ -14,6 +14,7 @@ What is MCP, refer to https://modelcontextprotocol.io/
 
 - `modelica_simulate` - run modelica model simulation by source code.
     - `modelica_code` (string, required): the source code of modelica model
+    - `stop_time` (float, optional, default=1.0): stop time of simulation
 
 
 ### Prompts - not supported yet
@@ -31,17 +32,19 @@ What is MCP, refer to https://modelcontextprotocol.io/
 2. Retrieve token:  after sucessful login, type F12 enter into dev mode, then click 'Network', finally type F5 to refresh, the network communications will be shown here, find 'status/' record and show its headers, the token is something like ```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MjI3NjAzLCJpYXQiOjE3NDQ2MjI4MDMsImp0aSI6IjY4MmFmOTA0MjA5ZDRmYWZiNTI1MmIyYTg1MjMxZDQ3IiwidXNlcl9pZCI6OH0.NKbo6NNtSzyzNebXSlmbRLYkf_5ffdWALT7OxXDr6b8```      (Without starting 'Bearer ' ) 
 3. Record this token, it will be used to fill in mcp configuration
 <center><img src="temp_auth_token.png" width="50%" height="50%" ></center>
-
-### Simple install
-
+4. Run install script
 replace below "ORTHOGONAL_TOKEN" with your token
 <p><b>
-wget http://paas.orthogonal.cc/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py  ORTHOGONAL_TOKEN
+wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py  ORTHOGONAL_TOKEN
 </b>
+<p>
+example:
+```wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTY2OTQxLCJpYXQiOjE3NDQzNjIxNDEsImp0aSI6ImE5M2RlNDUyMGU1ZDQ3M2RiZjVjOTFhMDgxZDEyYThjIiwidXNlcl9pZCI6NDR9.k0RM8as9PtFX1cvCowOQeZraDPM-Qks4dl9uFauHUH8"```
 
+The printed message "=== INSTALLATION SUCCESS ===" indicates the succeeded install
 
-
-### Cursor Installation:  using uv (recommended)
+<!--     commented out as install detailed steps
+### 2. Cursor Installation:  using uv (recommended)
 
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
 use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *modelica_simulate*.
@@ -69,11 +72,11 @@ uv installation <br>
 
 5. add dependencies<br>
 ```uv add "mcp[cli]" httpx websocket-client pandas pydantic  --active```
-
+-->
 
 ## Configuration
 
-### Configure for cursor/Claude.app
+### Configure for cursor/Claude.app   ( installation will config automatically for cursor )
 
 Add to your cursor/Claude settings:  mcp.json ( located in your user home directly or .cursor/ directory )
 in cursor you can open this file by clicking "Settings" -> "MCP" -> "Add new global MCP server"
@@ -157,9 +160,9 @@ after successful installation, the mcp server will be shown and the status icon 
 <center><img src="./mcp_server_running.png" width="50%" height="50%" ></center>
 
 
-### Customization - simulation parameters - not supported yet
+### Customization - not supported yet
 
-In future the server can be configured to use different simulation parameters `--stop-time` and `--step-size` ... 
+In future the server can be configured to use different simulation parameters `--stop-time`  ... 
 
 ### Debug 
 
@@ -169,4 +172,4 @@ it needs to add environment variable in mcp inspector window
 
 ## License
 
-modelica-simulation is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.
+modelica-simulation is licensed under the GPL License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.

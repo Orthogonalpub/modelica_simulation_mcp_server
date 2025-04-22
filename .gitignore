@@ -5,6 +5,7 @@ uv.lock
 __pycache__/
 *.py[cod]
 *$py.class
+modelica_simulation_mcp_server/
 
 # C extensions
 *.so
