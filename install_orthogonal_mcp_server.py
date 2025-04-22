@@ -193,7 +193,7 @@ def main():
     if g_os_name == "Windows":
         mcp_string = g_default_mcp_json_string_windows.replace("__PLACEHOLDER_PYTHON_CMD__", os.path.join(g_root_folder, ".venv", "Scripts", "python.exe").replace("\\", "\\\\") ).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(local_path, "main.py").replace("\\","\\\\")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__", sys.argv[1] ) 
     else:
-        mcp_string = g_default_mcp_json_string_mac_linux.replace("__PLACEHOLDER_UV_PATH__", g_uv_path ).replace("__PLACEHOLDER_RUNNING_FOLDER__", local_path).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(local_path, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__",sys.argv[1]) 
+        mcp_string = g_default_mcp_json_string_mac_linux.replace("__PLACEHOLDER_UV_PATH__", g_uv_path ).replace("__PLACEHOLDER_RUNNING_FOLDER__", os.path.join(g_root_folder,local_path）).replace("__PLACEHOLDER_PYTHON_MAIN__", os.path.join(g_root_folder, local_path, "main.py")).replace("__PLACEHOLDER_ORTHOGONAL_TOKEN__",sys.argv[1]) 
     try:
         new_mcp_json_dict = json.loads(mcp_string)
     except Exception as e:
