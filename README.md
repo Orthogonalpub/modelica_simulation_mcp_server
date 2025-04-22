@@ -36,7 +36,7 @@ wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O in
 </b>
 <p>
 example:<br>
-wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1OTA4NTk0LCJpYXQiOjE3NDUzMDM3OTQsImp0aSI6IjAxOWI3YWIxODg0YjRiZDE4MzE4ZmI4ZjVlNTI1OTI1IiwidXNlcl9pZCI6OH0.JwN3wjohjMUJZhWVB0rsePujn85Hq0ltg0d4HuXkc2Y"<br>
+wget http://paas.orthogonal.cc/mydownload/install_orthogonal_mcp_server.py -O install_orthogonal_mcp_server.py ; python3 install_orthogonal_mcp_server.py   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1OTA4NTk0LCJpYXQiOjE3NDUzMDM3OTQsImp0aSI6IjAxOWI3YWIxODg0YjRiZDE4MzE4ZmI4ZjVlNTI1OTI1IiwidXNlcl9pZCI6OH0.JwN3wjohjMUJZhWVB0rsePujn85Hq0ltg0d4HuXkc2Y"<br>
 
 <br>
 if the message "=== INSTALLATION SUCCESS ===" is printed, then you are all set
