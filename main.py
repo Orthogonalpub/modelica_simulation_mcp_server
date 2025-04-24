@@ -176,48 +176,48 @@ def orth_simulate(modelica_code: str, stop_time: float = 1.0):
     )
 
 
-@mcp.tool()
-async def modelica_service_available() -> bool:
-    """Check whether backend modelica service is running 
+# @mcp.tool()
+# async def modelica_service_available() -> bool:
+#     """Check whether backend modelica service is running 
 
-    Args:
-        None
+#     Args:
+#         None
 
-    Returns:
-        bool: if backend modelica service is running, then return true, otherwise return false
-    """
+#     Returns:
+#         bool: if backend modelica service is running, then return true, otherwise return false
+#     """
 
-    USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
-    if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
-        return {
-                    "simulation_status": "FAILED",        
-                    "simulation_error_messsage": "Env variable ORTHOGONAL_TOKEN is invalid or missing",
-                    "simulation_data_values": {}
-                } 
+#     USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
+#     if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
+#         return {
+#                     "simulation_status": "FAILED",        
+#                     "simulation_error_messsage": "Env variable ORTHOGONAL_TOKEN is invalid or missing",
+#                     "simulation_data_values": {}
+#                 } 
 
-    headers = {
-        "User-Agent": USER_AGENT,
-        "Accept": "*/*",
-        # "Host": ORTHOGONAL_HOST,
-        "Authorization": "Bearer "+ USER_ORTH_TOKEN,
-        # "Content-Type": "application/json",
-    }
+#     headers = {
+#         "User-Agent": USER_AGENT,
+#         "Accept": "*/*",
+#         # "Host": ORTHOGONAL_HOST,
+#         "Authorization": "Bearer "+ USER_ORTH_TOKEN,
+#         # "Content-Type": "application/json",
+#     }
 
-    async with httpx.AsyncClient() as client:
-        try:
-            response = await client.get(ORTHOGONAL_HTTP_URL, headers=headers, timeout=60.0)
+#     async with httpx.AsyncClient() as client:
+#         try:
+#             response = await client.get(ORTHOGONAL_HTTP_URL, headers=headers, timeout=60.0)
             
-            response.raise_for_status()
-            return True
-        except httpx.ConnectError as e:
-            logger.error(f"Connection error: {e}")
-            return False
-        except httpx.HTTPStatusError as e:
-            logger.error(f"HTTP error: {e}, status code: {e.response.status_code}, response text: {e.response.text}")
-            return False
-        except Exception as e:
-            logger.exception(f"An unexpected error occurred: {e}") 
-            return False
+#             response.raise_for_status()
+#             return True
+#         except httpx.ConnectError as e:
+#             logger.error(f"Connection error: {e}")
+#             return False
+#         except httpx.HTTPStatusError as e:
+#             logger.error(f"HTTP error: {e}, status code: {e.response.status_code}, response text: {e.response.text}")
+#             return False
+#         except Exception as e:
+#             logger.exception(f"An unexpected error occurred: {e}") 
+#             return False
 
 
 @mcp.tool()
