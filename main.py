@@ -219,8 +219,7 @@ def orth_simulate(modelica_code: str):
 
 
 @mcp.tool()
-async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code, the type is string") )
-                            ) -> dict:
+async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code, the type is string")  ) -> dict:
 
     """Run simulation with modelica code and return simulation result object of dict type
 
