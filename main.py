@@ -128,8 +128,7 @@ def on_open(ws):
         "ws_method_param":{ 
             "command": SIMULATION_CMD, 
             "command_param": {
-                "mo_src_code":  modelica_source_code,
-                "mo_stop_time":  modelica_stop_time
+                "mo_src_code":  modelica_source_code
             }
         } 
     }
@@ -138,14 +137,13 @@ def on_open(ws):
     ws.send(json.dumps(data_dict))
 
 
-def orth_simulate(modelica_code: str, stop_time: float = 1.0):
+def orth_simulate(modelica_code: str):
 
     global modelica_source_code
     global modelica_stop_time
     global USER_ORTH_TOKEN
 
     modelica_source_code = modelica_code
-    modelica_stop_time = stop_time
 
     USER_ORTH_TOKEN = os.environ.get("ORTHOGONAL_TOKEN")
     if USER_ORTH_TOKEN is None or len(USER_ORTH_TOKEN) == 0:
@@ -221,8 +219,7 @@ def orth_simulate(modelica_code: str, stop_time: float = 1.0):
 
 
 @mcp.tool()
-async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code, the type is string"), 
-                            stop_time: float = Field(default=1.0, gt=0.0, le=30.0, description="Stop time of simulation in seconds, the type is float and default value is 1.0")
+async def modelica_simulate(modelica_code: str = Field(default="", description="Modelica source code, the type is string") )
                             ) -> dict:
 
     """Run simulation with modelica code and return simulation result object of dict type
@@ -230,7 +227,6 @@ async def modelica_simulate(modelica_code: str = Field(default="", description="
     Args:
         modelica_code (str): the input modelica code, which will be sent to modelica simulation mcp server to simuate. The input modelica source code must be valid, otherwise simulation will fail
 
-        stop_time (float): the stop time of the simulation in seconds, default is 1.0 
         
     Returns:
         dict: the simulation result， it is an object containing below keys:                
@@ -274,7 +270,7 @@ async def modelica_simulate(modelica_code: str = Field(default="", description="
                 return ws_response_obj
 
 
-            orth_simulate(modelica_code, stop_time) 
+            orth_simulate(modelica_code) 
 
             check_interval = 2
             check_cnt = 0
