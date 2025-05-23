@@ -1,7 +1,5 @@
 
 
-# INTERNAL TEST ONLY - will be ready soon 
-
 # Modelica MCP Server
 
 A Model Context Protocol server that provides modelica model simulation capabilities. This server enables LLMs to retrieve and process modelica related tasks.
