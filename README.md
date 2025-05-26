@@ -97,6 +97,8 @@ end SimpleCircuit;"
 
 > **Installation Video Tutorial**: [Watch the setup process](https://claude.ai/chat/link-to-demo-video)
 
+> **Showcase Video **: [Watch the setup process](https://claude.ai/chat/link-to-demo-video)
+![[MCP.mp4]]
 ## 🤝 Contributing
 
 We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
@@ -108,8 +110,7 @@ This project is licensed under the MIT License.
 ## 🔗 Links
 
 - [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Orthogonal Platform](https://paas.orthogonal.cc/)
-- [Documentation](https://claude.ai/chat/d5fffc82-c149-404b-b337-43ee9187d4f2#) | [Issues](https://claude.ai/chat/d5fffc82-c149-404b-b337-43ee9187d4f2#) | [Discussions](https://claude.ai/chat/d5fffc82-c149-404b-b337-43ee9187d4f2#)
+- [Orthogonal Platform](https://www.orthogonal.dev/)
 
 ---
 
