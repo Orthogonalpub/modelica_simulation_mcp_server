@@ -65,6 +65,7 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 
 ---
 ## Show case
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u_mmqRKLtXY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 ## Resources & Links
