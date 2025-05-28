@@ -19,8 +19,8 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 - **⚙️ Full Modelica IDE Integration**: Access complete Modelica development environment
 - **🔄 Autonomous Simulation**: End-to-end simulation workflow from concept to results
   
+![Overview](2.png)
 
-![[Pasted image 20250528135249.png]]
 ## Key Features
 
 | Feature                        | Description                                                                                                                          |
