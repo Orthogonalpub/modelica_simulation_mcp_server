@@ -55,7 +55,7 @@ The Modelica MCP server transforms **ODE—a new Modelica IDE** into an engineer
 
 ---
 
-## Installation Guide by example using Cursor
+## Installation
 
 1. **Create User Account** → Visit [www.orthogonal.dev](https://www.orthogonal.dev/)
 2. **Login** to your account
