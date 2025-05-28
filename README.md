@@ -66,9 +66,6 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 ---
 ## Show case
 
-<div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin: 10px 0;"> <strong>💡 Prompt in Cursor</strong><br> Create a Modelica bouncing ball model and simulate with MCP server, based on the simulation results, create an HTML visualization that animates the simulation using Three.js. </div>
-
-
 ---
 ## Resources & Links
 
