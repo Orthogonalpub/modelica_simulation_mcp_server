@@ -15,8 +15,8 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 **Key Capabilities:**
 
 - **🤖 AI-Driven Model Generation**: Automatically create complete Modelica models from natural language descriptions
-- **🎨 Intelligent Diagram Creation**: Generate interactive visual diagrams with proper component placement and connections in [ODE](www.orthogonal.dev)
-- **⚙️ Full Modelica IDE Integration**: Access complete Modelica development environment [ODE](www.ortthogonal.dev)
+- **🎨 Intelligent Diagram Creation**: Generate interactive visual diagrams with proper component placement and connections in Modelica IDE
+- **⚙️ Full Modelica IDE Integration**: Access complete Modelica development environment
 - **🔄 Autonomous Simulation**: End-to-end simulation workflow from concept to results
   
 
