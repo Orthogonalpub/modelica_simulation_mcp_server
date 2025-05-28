@@ -64,6 +64,9 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 
 ---
 ## Show case
+
+This demonstration showcases creating a bouncing ball model with realistic physics including gravitational acceleration, ground collision detection, and coefficient of restitution using just a text prompt in Cursor. The Modelica MCP Server automatically generates the differential equations, runs the simulation, and extracts position and velocity data over time. The simulation results are then fed into a custom Three.js visualization that renders an animated 3D scene with the bouncing ball, ground plane, and real-time trajectory tracking.
+
 ▶️ [Watch on YouTube](https://youtu.be/u_mmqRKLtXY)
 
 ---
@@ -75,3 +78,8 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 |**[Orthogonal Platform](https://www.orthogonal.dev/)**|Advanced Modelica simulation platform|
 |**[Modelica Language](https://modelica.org/)**|Official Modelica language resources|
 
+---
+## Author Information
+
+**orthogonal supersystems GmbH**  
+[www.orthogonal.dev](https://www.orthogonal.dev/)
