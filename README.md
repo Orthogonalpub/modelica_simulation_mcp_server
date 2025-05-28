@@ -61,7 +61,7 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 3. **Get token**
 4. **MCP Client Configuration**
 
-![[1.png]]
+![Installation Screenshot](1.png)
 
 ---
 ## Show case
