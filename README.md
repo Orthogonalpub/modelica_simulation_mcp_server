@@ -1,117 +1,84 @@
+
 # Modelica MCP Server
 
-> A lightweight Model Context Protocol (MCP) server for simulating Modelica models, enabling LLMs to process Modelica-related tasks seamlessly.
+**A lightweight Model Context Protocol server for simulating Modelica models**  
+_Enabling LLMs to process Modelica-related tasks seamlessly_
 
-[![MCP](https://img.shields.io/badge/MCP-Compatible-blue.svg)](https://modelcontextprotocol.io/) [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://claude.ai/chat/d5fffc82-c149-404b-b337-43ee9187d4f2#) [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)](https://claude.ai/chat/d5fffc82-c149-404b-b337-43ee9187d4f2#)
-
-## 🚀 What is this?
-
-This MCP server bridges the gap between Large Language Models and Modelica simulation capabilities. It allows AI assistants to execute Modelica code, run simulations, and analyze results directly within conversations.
-
-**Learn more about MCP**: [modelcontextprotocol.io](https://modelcontextprotocol.io/)
-
-## ✨ Features
-
-- **🔧 Direct Modelica Simulation** - Execute Modelica models with customizable parameters
-- **📊 Visual Diagrams** - Generate and retrieve model diagrams
-- **⚡ Fast Integration** - Quick setup with popular AI clients
-- **🛡️ Secure** - Token-based authentication
-
-## 🛠️ Available Tools
-
-### `modelica_simulate`
-
-Executes Modelica model simulations with configurable parameters.
-
-**Parameters:**
-
-- `modelica_code` _(string, required)_ - Complete Modelica model source code
-- `stop_time` _(float, optional)_ - Simulation duration (default: 1.0 seconds)
-
-**Returns:** Simulation results including status, error messages, and data values
-
-### `modelica_get_diagram_url`
-
-Generates visual diagrams for Modelica models.
-
-**Parameters:**
-
-- `model_name` _(string, required)_ - Name of the Modelica model
-- `diagram_type` _(string, optional)_ - Type of diagram to generate
-
-**Returns:** URL to the generated diagram
-
-## 📦 Installation
-
-### Step 1: Get Your Authentication Token
-
-1. **Register** at [paas.orthogonal.cc](https://paas.orthogonal.cc/)
-    
-2. **Login** to your account
-    
-3. **Extract token**:
-    
-    - Open browser developer tools (`F12`)
-    - Navigate to **Network** tab
-
-4. **Save** the token for configuration
-    
-
-### Step 2: Configure MCP Client
-
-#### For Cursor/Claude Desktop
-
-Add to your MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "modelica": {
-      "command": "npx",
-      "args": ["modelica-mcp-server"],
-      "env": {
-        "ORTHOGONAL_TOKEN": "your_token_here"
-      }
-    }
-  }
-}
-```
-
-#### For Other Clients
-
-Configuration varies by client. Check your client's MCP documentation for specific setup instructions.
-
-## 📋 Quick Start
-
-Once configured, you can interact with Modelica models through your AI assistant:
-
-```
-"Simulate this Modelica model and show me the results:
-
-model SimpleCircuit
-  // Your Modelica code here
-end SimpleCircuit;"
-```
-
-## 🎥 Demo
-
-> **Installation Video Tutorial**: [Watch the setup process](https://claude.ai/chat/link-to-demo-video)
-
-> **Showcase Video **: [Watch the setup process](https://claude.ai/chat/link-to-demo-video)
-![[MCP.mp4]]
-## 🤝 Contributing
-
-We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🔗 Links
-
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Orthogonal Platform](https://www.orthogonal.dev/)
+![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-6366f1?style=for-the-badge) ![MIT License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge) ![Active Status](https://img.shields.io/badge/Status-Active-22c55e?style=for-the-badge)
 
 ---
 
-<div align="center"> <sub>Built with ❤️ for the Modelica community</sub> </div>
+## What is this?
+
+Modelica MCP server **transforms AI assistants into intelligent Modelica engineering agents**, seamlessly bridging Large Language Models with advanced simulation capabilities. It enables AI to autonomously generate, visualize, and simulate complex engineering models through natural language interactions.
+
+**Key Capabilities:**
+
+- **🤖 AI-Driven Model Generation**: Automatically create complete Modelica models from natural language descriptions
+- **🎨 Intelligent Diagram Creation**: Generate interactive visual diagrams with proper component placement and connections in [ODE](www.orthogonal.dev)
+- **⚙️ Full Modelica IDE Integration**: Access complete Modelica development environment [ODE](www.ortthogonal.dev)
+- **🔄 Autonomous Simulation**: End-to-end simulation workflow from concept to results
+  
+
+![[Pasted image 20250528135249.png]]
+## Key Features
+
+| Feature                        | Description                                                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **🤖 AI Model Generation**     | **Automatically create** complete Modelica models from natural language descriptions                                                 |
+| **🎨 Intelligent Diagramming** | **Generate visual diagrams** with smart component placement, automatic routing, and professional annotations through ODE integration |
+| **🏗️ Full IDE Access**        | **Complete Modelica development environment** via ODE with syntax highlighting, error checking, and debugging                        |
+| **📊 Advanced Visualization**  | **Real-time plotting**, 3D visualization, interactive charts, and customizable result analysis dashboards                            |
+| **⚡ Seamless Integration**     | **One-click setup** with popular AI clients like Cursor, and custom LLM applications                                                 |
+| **🛡️ Enterprise Security**    | **Token-based authentication** with secure cloud execution and data protection                                                       |
+| **🔄 Autonomous Workflows**    | **End-to-end automation** from natural language input to simulation results and engineering insights                                 |
+
+---
+
+## Available Tools
+
+###### `modelica_simulate()`
+
+**Purpose**: Execute complete Modelica simulation workflows with AI  
+**Features**:
+- Automatic model validation and error correction
+- Multi-scenario simulation batching
+- Real-time progress monitoring 
+###### `modelica_get_diagram_url()`
+
+**Purpose**: Generate interactive model diagrams through ODE integration  
+**Features**:
+- AI-optimized component placement and layout
+- Automatic connection routing and labeling
+- Professional engineering diagram standards
+
+---
+
+## Installation Guide by example using Cursor
+
+1. **Create User Account** → Visit [www.orthogonal.dev](https://www.orthogonal.dev/)
+2. **Login** to your account
+3. **Get token**
+4. **MCP Client Configuration**
+
+![[1.png]]
+
+---
+## Show case
+
+Prompt : Create a Modelica bouncing ball model and simulate with MCP server, based on the simulation results, create an HTML visualization that animates the simulation using Three.js.
+
+![[MCP 1.mp4]]
+
+---
+## Resources & Links
+
+|Resource|Description|
+|---|---|
+|**[Model Context Protocol](https://modelcontextprotocol.io/)**|Official MCP documentation and specifications|
+|**[Orthogonal Platform](https://www.orthogonal.dev/)**|Advanced Modelica simulation platform|
+|**[Modelica Language](https://modelica.org/)**|Official Modelica language resources|
+
+---
+
+**Built with ❤️ for the Modelica community**
