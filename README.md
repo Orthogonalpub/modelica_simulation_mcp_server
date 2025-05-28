@@ -10,6 +10,8 @@ _Enabling LLMs to process Modelica-related tasks seamlessly_
 
 ## What is this?
 
+![Overview](2.png)
+
 Modelica MCP server **transforms AI assistants into intelligent Modelica engineering agents**, seamlessly bridging Large Language Models with advanced simulation capabilities. It enables AI to autonomously generate, visualize, and simulate complex engineering models through natural language interactions.
 
 **Key Capabilities:**
@@ -18,7 +20,7 @@ Modelica MCP server **transforms AI assistants into intelligent Modelica enginee
 - **🎨 Intelligent Diagram Creation**: Generate interactive visual diagrams with proper component placement and connections in Modelica IDE
 - **🔄 Autonomous Simulation**: End-to-end simulation workflow from concept to results
   
-![Overview](2.png)
+
 
 ## Key Features
 
