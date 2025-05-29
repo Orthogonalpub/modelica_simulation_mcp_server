@@ -44,7 +44,7 @@ The Modelica MCP server transforms **ODE—a new Modelica IDE** into an engineer
 
 ###### `modelica_get_diagram_url()`
 
-**Purpose**: Generate interactive model diagrams with Modelica IDE  
+**Purpose**: Generate interactive model diagrams in ODE
 
 ---
 
