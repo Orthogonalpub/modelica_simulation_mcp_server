@@ -40,18 +40,11 @@ The Modelica MCP server transforms **ODE—a new Modelica IDE** into an engineer
 
 ###### `modelica_simulate()`
 
-**Purpose**: Execute complete Modelica simulation workflows with AI  
-**Features**:
-- Automatic model validation and error correction
-- Multi-scenario simulation batching
-- Real-time progress monitoring 
+**Purpose**: Execute complete Modelica simulation workflows with MCP clients
+
 ###### `modelica_get_diagram_url()`
 
-**Purpose**: Generate interactive model diagrams through ODE integration  
-**Features**:
-- AI-optimized component placement and layout
-- Automatic connection routing and labeling
-- Professional engineering diagram standards
+**Purpose**: Generate interactive model diagrams with Modelica IDE  
 
 ---
 
