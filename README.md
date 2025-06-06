@@ -64,9 +64,8 @@ This demonstration showcases creating a bouncing ball model with realistic physi
 
 
 
-[![Watch the Demo](https://img.youtube.com/vi/j9FHccdkPPU/maxresdefault.jpg)](https://youtu.be/j9FHccdkPPU)
-
-**🎥 [Watch Full Demo on YouTube](https://youtu.be/j9FHccdkPPU)**
+[![Watch the Demo](https://img.youtube.com/vi/-M8oHYvl2Co/maxresdefault.jpg)](https://youtu.be/-M8oHYvl2Co?si=nU_S9CMz3J7j4UcC)
+**🎥 [Watch Full Demo on YouTube](https://youtu.be/-M8oHYvl2Co?si=nU_S9CMz3J7j4UcC)**
 
 ---
 ## Resources & Links
