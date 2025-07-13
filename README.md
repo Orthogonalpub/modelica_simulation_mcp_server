@@ -50,12 +50,16 @@ The Modelica MCP server transforms **ODE—a new Modelica IDE** into an engineer
 
 ## Installation
 
+[![Watch Installation tutorial](https://img.youtube.com/vi/vYq__hUSIFA/maxresdefault.jpg)](https://youtu.be/vYq__hUSIFA?si=CflJiUIwL7Tns7Wp)
+**🎥 [Watch Installation tutorial on YouTube](https://youtu.be/vYq__hUSIFA?si=CflJiUIwL7Tns7Wp)**
+
 1. **Create User Account** → Visit [www.orthogonal.dev](https://www.orthogonal.dev/)
 2. **Login** to your account
 3. **Get token**
 4. **MCP Client Configuration**
 
 ![Installation Screenshot](1.png)
+
 
 ---
 ## Show case
