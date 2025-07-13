@@ -10,7 +10,7 @@ _Enabling LLMs to process Modelica-related tasks seamlessly_
 
 ## What is this?
 
-![Overview](2.png)
+![Overview](3.png)
 
 The Modelica MCP server transforms **ODE—a new Modelica IDE** into an engineering **AI agent**, seamlessly bridging Large Language Models with advanced simulation capabilities. It enables AI to autonomously generate, visualize, and simulate complex engineering models through natural language interactions.
 
