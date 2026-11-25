@@ -127,7 +127,7 @@ https://www.ode.plus/<YOUR_TOKEN>/mcp
 | [Model Context Protocol](https://modelcontextprotocol.io/) | Official MCP documentation and specification |
 | [Modelica](https://modelica.org/) | Modelica language resources |
 
-Questions or problems: open an issue in this repository or contact us through [www.ode.plus](https://www.ode.plus).
+Questions or problems: open an issue in this repository or contact us at [contact@ode.plus](mailto:contact@ode.plus).
 
 ---
 
